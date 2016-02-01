@@ -7,6 +7,8 @@ var router = express.Router();
 var http = require('http');
 var URL = require('url');
 var websocket = require('../websocket')
+var zlib = require('zlib');
+
 var handler = function (req, res, next) {
     var urlP = URL.parse(req.query.url);
     var headers = {};
@@ -27,13 +29,40 @@ var handler = function (req, res, next) {
     var req2 = http.request(options, function (res2) {
         res.writeHead(res2.statusCode, res2.headers);
         res2.pipe(res);
+        var chunks = [], encoding = res2.headers['content-encoding'];
+        if (encoding === 'undefined') {
+            res.setEncoding('utf-8');
+        }
         res2.on('data', function (data) {
-            console.log("request " + req.query.url + " data:" + data);
-            var obj = {};
-            obj.method = req.method;
-            obj.url = req.query.url;
-            obj.data = data;
-            websocket.instance().emit('message', obj);
+            chunks.push(data);
+        });
+        res2.on('end', function () {
+            var buffer = Buffer.concat(chunks);
+            var callback = function (data) {
+                var obj = {};
+                obj.method = req.method;
+                obj.url = req.query.url;
+                obj.headers = res2.headers;
+                obj.data = data;
+                console.log("request " + req.query.url + " data:" + data);
+                websocket.instance().emit('message:' + sessionid, obj);
+            }
+            if (encoding == 'gzip') {
+                zlib.gunzip(buffer, function (err, decoded) {
+                    data = decoded.toString();
+                    callback(data);
+                });
+            } else if (encoding == 'deflate') {
+                zlib.inflate(buffer, function (err, decoded) {
+                    data = decoded.toString();
+                    callback(data);
+                });
+            } else {
+                data = buffer.toString();
+                callback(data);
+            }
+
+
         });
     });
     if (/POST|PUT/i.test(req.method)) {

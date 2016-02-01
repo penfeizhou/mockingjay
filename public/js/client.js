@@ -4,7 +4,8 @@
 connection = {
     socket: null,
     genUid: function () {
-        return new Date().getTime() + "" + Math.floor(Math.random() * 899 + 100);
+        return '1454340350668702';
+        //return new Date().getTime() + "" + Math.floor(Math.random() * 899 + 100);
     },
     init: function () {
         this.sessionid = this.genUid();
@@ -16,7 +17,7 @@ connection = {
         this.socket.emit('bind', {sessionid: this.sessionid});
 
         //监听消息发送
-        this.socket.on('message', function (obj) {
+        this.socket.on('message:' + this.sessionid, function (obj) {
             console.log("method=" + obj.method + ",url=" + obj.url + ",data=" + obj.data);
         });
     }

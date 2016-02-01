@@ -45,13 +45,6 @@ var websocket = {
                 console.log(obj.sessionid + '已解绑');
             }
         });
-
-        //监听用户发布聊天内容
-        socket.on('message', function (obj) {
-            //向所有客户端广播发布的消息
-            emit('message', obj);
-            console.log(obj.sessionid + '发布');
-        });
     },
     instance: function () {
         return instance;
