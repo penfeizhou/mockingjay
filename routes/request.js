@@ -6,6 +6,7 @@ var router = express.Router();
 //url=?&sessionid=?
 var http = require('http');
 var URL = require('url');
+var websocket = require('../websocket')
 var handler = function (req, res, next) {
     var urlP = URL.parse(req.query.url);
     var headers = {};
@@ -28,20 +29,24 @@ var handler = function (req, res, next) {
         res2.pipe(res);
         res2.on('data', function (data) {
             console.log("request " + req.query.url + " data:" + data);
+            var obj = {};
+            obj.method = req.method;
+            obj.url = req.query.url;
+            obj.data = data;
+            websocket.instance().emit('message', obj);
         });
     });
     if (/POST|PUT/i.test(req.method)) {
         if (req.headers['content-type'] &&
             req.headers['content-type'].indexOf('multipart/form-data') === 0 &&
-            (req.method === 'POST' || req.method === 'PUT')){
-            var size = 0;
+            (req.method === 'POST' || req.method === 'PUT')) {
             req.on('data', function (data) {
                 req2.write(data);
             });
             req.on('end', function () {
                 req2.end();
             });
-        }else{
+        } else {
             req2.write(req.rawBody);
         }
     } else {
