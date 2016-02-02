@@ -6,7 +6,7 @@ var List = React.createClass({
         },
         render: function () {
             return (
-                <div>
+                <div className='list'>
                     {this.state.items.map(function (item) {
                         return <Item data={item}/>;
                     })}

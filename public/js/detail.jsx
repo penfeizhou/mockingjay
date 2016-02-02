@@ -16,7 +16,10 @@ var Detail = React.createClass({
 
     render: function () {
         var self = this;
-        function createMarkup() { return {__html: syntaxHighlight(self.props.data.data)}; };
+
+        function createMarkup() {
+            return {__html: syntaxHighlight(self.props.data.data)};
+        };
         return (
             <div className='pre' dangerouslySetInnerHTML={createMarkup()}></div>
         )
