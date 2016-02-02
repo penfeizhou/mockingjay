@@ -2,6 +2,7 @@
  * Created by pengfei on 16/2/1.
  */
 var express = require('express');
+var uuid = require('node-uuid');
 var router = express.Router();
 //url=?&sessionid=?
 var http = require('http');
@@ -17,7 +18,6 @@ var handler = function (req, res, next) {
             headers[i] = req.headers[i];
         }
     }
-    var bodyString = JSON.stringify(req.body);
     var options = {
         hostname: urlP.hostname,
         port: urlP.port,
@@ -26,7 +26,22 @@ var handler = function (req, res, next) {
         headers: headers
     };
     var sessionid = req.query.sessionid;
+    var msg = {};
+    msg.method = req.method;
+    msg.url = req.query.url;
+    msg.status = 'Pending';
+    msg.data = {};
+    msg.uuid = uuid.v1();
+    msg.requestHeaders = req.headers;
+    var callback = function (obj) {
+        msg.data = obj;
+        websocket.instance().emit('message:' + sessionid, msg);
+    };
+    callback();
+    var timestamp = new Date().getTime();
     var req2 = http.request(options, function (res2) {
+        msg.responsHeaders = res2.headers;
+        msg.statusCode = res2.statusCode;
         res.writeHead(res2.statusCode, res2.headers);
         res2.pipe(res);
         var chunks = [], encoding = res2.headers['content-encoding'];
@@ -37,17 +52,10 @@ var handler = function (req, res, next) {
             chunks.push(data);
         });
         res2.on('end', function () {
+
+            msg.status = 'Done ';
+            msg.cost = new Date().getTime() - timestamp;
             var buffer = Buffer.concat(chunks);
-            var callback = function (data) {
-                var obj = {};
-                obj.method = req.method;
-                obj.url = req.query.url;
-                obj.statusCode = res2.statusCode;
-                obj.headers = res2.headers;
-                obj.data = data;
-                console.log("request " + req.query.url + " data:" + data);
-                websocket.instance().emit('message:' + sessionid, obj);
-            }
             if (encoding == 'gzip') {
                 zlib.gunzip(buffer, function (err, decoded) {
                     data = decoded.toString();
@@ -72,6 +80,8 @@ var handler = function (req, res, next) {
             (req.method === 'POST' || req.method === 'PUT')) {
             req.on('data', function (data) {
                 req2.write(data);
+                msg.status = 'Uploading';
+                callback();
             });
             req.on('end', function () {
                 req2.end();
@@ -84,7 +94,10 @@ var handler = function (req, res, next) {
     }
     req2.on('error', function (e) {
         console.log("request " + req.query.url + " error:" + e.message);
-        res.end(e.stack);
+        msg.status = 'Error';
+        msg.cost = new Date().getTime() - timestamp;
+        msg.data = e.stack;
+        callback();
     });
 };
 

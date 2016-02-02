@@ -4,16 +4,16 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-li{
+li {
     list-style-type: none;
 }
 
-h1{
+h1 {
     position: absolute;
     right: 10px;
     top: 10px;
     margin: 0;
-    color: rgba(0,0,0,0.2);
+    color: rgba(0, 0, 0, 0.2);
 }
 
 #container {
@@ -32,28 +32,40 @@ h1{
     overflow: auto;
 }
 
-#left .item{
-   padding: 10px;
-   border-bottom: 1px solid #eee;      
+#left .item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-
-#left .item .method{
-    color: #333;
-    margin-right: 5px;
-}
-#left .item .code{
+#left .item .method {
     color: #333;
     margin-right: 5px;
 }
 
-#left .item .code-200{
+#left .item .code {
+    color: #333;
+    margin-right: 5px;
+}
+
+#left .item .status {
+    color: #259a7d;
+    margin-right: 5px;
+}
+
+#left .item .cost {
+    color: #1d179a;
+    margin-right: 5px;
+}
+
+#left .item .code-200 {
     color: #289A3E;
 }
 
-#left .item .address{}
+#left .item .address {
+    margin-right: 5px;
+}
 
-#right{
+#right {
     width: 50%;
     position: fixed;
     top: 0;

@@ -40,6 +40,8 @@ var Item = React.createClass({
                     <span className="method">{this.props.data.method}</span>
                     <span className={'code code-' + this.props.data.statusCode}>{this.props.data.statusCode}</span>
                     <span className="address">{this.props.data.url}</span>
+                    <span className="status">{this.props.data.status}</span>
+                    <span className="cost">{this.props.data.cost + 'ms'}</span>
                 </div>
             </li>
         )
