@@ -1,14 +1,17 @@
 mixin js(src)
     script(src="#{src}")
-
+mixin jsx(src)
+    script(type="text/jsx",src="#{src}")
 
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='icon',href='/favicon.ico',type="image/x-icon")
-    link(rel='shortcut icon',href='/favicon.ico',type="image/x-icon")
-  body
-    block content
-    block js
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='icon',href='/favicon.ico',type="image/x-icon")
+        link(rel='shortcut icon',href='/favicon.ico',type="image/x-icon")
+        +js('/js/module/react.js')
+        +js('/js/module/JSXTransformer.js')
+    body
+        block content
+        block js

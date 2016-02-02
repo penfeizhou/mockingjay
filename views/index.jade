@@ -2,7 +2,13 @@ extends layout
 
 block content
     h1= title
-    img(src='/images/mockingbrid.jpg')
+    //img(src='/images/mockingbrid.jpg')
+    #container
+        #left
+        #right
 block js
-    +js('/js/socket.io.js')
+    +jsx('/js/list.js')
+    +jsx('/js/detail.js')
+    +jsx('/js/content.js')
+    +js('/js/module/socket.io.js')
     +js('/js/client.js')

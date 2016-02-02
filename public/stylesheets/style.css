@@ -1,9 +1,63 @@
 body {
-  padding: 10px;
-  padding-top: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    padding-top: 0px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+#left {
+    width: 50%;
+    height: 100%;
+    float: left;
+    overflow: auto;
+}
+
+#right {
+    width: 50%;
+    height: 100%;
+    float: right;
+    overflow: auto;
+    outline: 1px solid black;
+}
+
+.pre {
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+}
+
+.string {
+    color: green;
+}
+
+.number {
+    color: darkorange;
+}
+
+.boolean {
+    color: blue;
+}
+
+.null {
+    color: magenta;
+}
+
+.key {
+    color: red;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+input {
+    padding: 0.4em 0.25em;
+    width: 100%;
+    background: transparent;
+    color: #AFB5BB;
+    font-size: 1.55em;
 }

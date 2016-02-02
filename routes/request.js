@@ -42,6 +42,7 @@ var handler = function (req, res, next) {
                 var obj = {};
                 obj.method = req.method;
                 obj.url = req.query.url;
+                obj.statusCode = res2.statusCode;
                 obj.headers = res2.headers;
                 obj.data = data;
                 console.log("request " + req.query.url + " data:" + data);
