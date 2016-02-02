@@ -6,11 +6,11 @@ var List = React.createClass({
         },
         render: function () {
             return (
-                <div className='list'>
+                <table className='list'>
                     {this.state.items.map(function (item) {
                         return <Item data={item}/>;
                     })}
-                </div>
+                </table>
             )
         }
     }
@@ -34,16 +34,21 @@ var Item = React.createClass({
         selected(this.props.data);
     },
     render: function () {
+        var ret = /:\/\/([^\/]+?)(\/+[^\?]*)/.exec(this.props.data.url);
+        var domain = ret[1];
+        var path = ret[2];
         return (
-            <li className="item" onClick={this.onClick}>
-                <div>
-                    <span className="method">{this.props.data.method}</span>
-                    <span className={'code code-' + this.props.data.statusCode}>{this.props.data.statusCode}</span>
-                    <span className="address">{this.props.data.url}</span>
-                    <span className="status">{this.props.data.status}</span>
-                    <span className="cost">{this.props.data.cost + 'ms'}</span>
-                </div>
-            </li>
+            <tbody >
+            <tr className="item">
+                <td className="method">{this.props.data.method}</td>
+                <td className={'code code-' + this.props.data.statusCode}>{this.props.data.statusCode}</td>
+                <td className="domain" onClick={this.onClick}>{domain}</td>
+                <td className="path" onClick={this.onClick}>{path}</td>
+                <td className="status">{this.props.data.status}</td>
+                <td className="cost">{this.props.data.cost + 'ms'}</td>
+                <td className="time">{ new Date(this.props.data.time).toTimeString()}</td>
+            </tr>
+            </tbody>
         )
     }
 

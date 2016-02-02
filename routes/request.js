@@ -32,13 +32,13 @@ var handler = function (req, res, next) {
     msg.status = 'Pending';
     msg.data = {};
     msg.uuid = uuid.v1();
+    msg.time = new Date().getTime();
     msg.requestHeaders = req.headers;
     var callback = function (obj) {
         msg.data = obj;
         websocket.instance().emit('message:' + sessionid, msg);
     };
     callback();
-    var timestamp = new Date().getTime();
     var req2 = http.request(options, function (res2) {
         msg.responsHeaders = res2.headers;
         msg.statusCode = res2.statusCode;
@@ -54,7 +54,7 @@ var handler = function (req, res, next) {
         res2.on('end', function () {
 
             msg.status = 'Done ';
-            msg.cost = new Date().getTime() - timestamp;
+            msg.cost = new Date().getTime() - msg.time;
             var buffer = Buffer.concat(chunks);
             if (encoding == 'gzip') {
                 zlib.gunzip(buffer, function (err, decoded) {

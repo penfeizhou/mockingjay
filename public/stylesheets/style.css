@@ -80,6 +80,10 @@ a {
     overflow-wrap: normal;
 }
 
+#left .list {
+    width: 100%;
+}
+
 #left .item {
     padding: 10px;
     border-bottom: 1px solid #eee;
@@ -107,15 +111,30 @@ a {
 
 #left .item .code-200 {
     color: #289A3E;
-}
-
-#left .item .address {
     margin-right: 5px;
 }
 
-#left .item .address:hover {
+#left .item .domain {
+    corlor: #00008;
+    margin-right: 5px;
+}
+
+#left .item .domain:hover {
     text-decoration: underline;
     text-underline-color: #000088;
+}
+
+#left .item .path {
+    margin-right: 5px;
+    corlor: #00008;
+}
+
+#left .item .path:hover {
+    text-decoration: underline;
+    text-underline-color: #000088;
+}
+
+#left .item .time {
 }
 
 .pre {
