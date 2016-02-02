@@ -1,19 +1,60 @@
-body {
+html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div {
+    margin: 0;
+    border: 0;
+    padding: 0;
 }
 
 li {
     list-style-type: none;
 }
 
-h1 {
+a {
+    color: #00B7FF;
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#toolbar {
+    height: 50px;
+    padding: 0 20px;
+    background-color: black;
+    color: white;
+}
+
+#toolbar h1 {
     position: absolute;
-    right: 10px;
+    margin: 0;
+    left: 30px;
+    top: 10px;
+}
+
+#toolbar a {
+    position: absolute;
+    right: 30px;
     top: 10px;
     margin: 0;
-    color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+#toolbar a:hover {
+    text-decoration: underline;
+    text-underline-color: #000088;
 }
 
 #container {
@@ -22,14 +63,21 @@ h1 {
 }
 
 #left {
-    border-right: 1px solid #ccc;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
     width: 50%;
+    height: 100%;
     float: left;
-    overflow: auto;
+    border-right: 1px solid darkgray;
+    box-sizing: border-box;
+    overflow-wrap: normal;
+    overflow-x: scroll;
+}
+
+#right {
+    width: 50%;
+    height: 100%;
+    float: left;
+    overflow-x: scroll;
+    overflow-wrap: normal;
 }
 
 #left .item {
@@ -65,13 +113,9 @@ h1 {
     margin-right: 5px;
 }
 
-#right {
-    width: 50%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    overflow: auto;
+#left .item .address:hover {
+    text-decoration: underline;
+    text-underline-color: #000088;
 }
 
 .pre {
@@ -97,10 +141,6 @@ h1 {
 
 .key {
     color: red;
-}
-
-a {
-    color: #00B7FF;
 }
 
 input {

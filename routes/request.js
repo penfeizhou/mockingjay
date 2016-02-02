@@ -96,7 +96,7 @@ var handler = function (req, res, next) {
         console.log("request " + req.query.url + " error:" + e.message);
         msg.status = 'Error';
         msg.cost = new Date().getTime() - timestamp;
-        msg.data = e.stack;
+        msg.data = e.stack.toString();
         callback();
     });
 };

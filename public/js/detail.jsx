@@ -18,6 +18,9 @@ var Detail = React.createClass({
         var self = this;
 
         function createMarkup() {
+            if (!self.props.data.data) {
+                return {};
+            }
             return {__html: syntaxHighlight(self.props.data.data)};
         };
         return (
