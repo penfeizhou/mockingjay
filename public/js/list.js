@@ -37,7 +37,9 @@ var Item = React.createClass({
         return (
             <li className="item" onClick={this.onClick}>
                 <div>
-                    {this.props.data.method + " " + this.props.data.statusCode + " " + this.props.data.url}
+                    <span className="method">{this.props.data.method}</span>
+                    <span className={'code code-' + this.props.data.statusCode}>{this.props.data.statusCode}</span>
+                    <span className="address">{this.props.data.url}</span>
                 </div>
             </li>
         )

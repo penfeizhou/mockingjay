@@ -6,9 +6,10 @@ function update(obj) {
         document.getElementById('left')
     );
 }
+
 function selected(obj) {
     React.render(
-        <Detail data={obj}/>,
+        <Detail className="detail" data={obj}/>,
         document.getElementById('right')
     );
 }

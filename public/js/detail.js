@@ -15,7 +15,7 @@ var Detail = React.createClass({
     },
     render: function () {
         return (
-            <div class='pre'>
+            <div className='pre'>
                 {syntaxHighlight(this.props.data.data)}
             </div>
         )
