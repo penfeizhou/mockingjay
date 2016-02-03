@@ -23,6 +23,17 @@ a {
     color: #00B7FF;
 }
 
+textarea {
+    width: 100%;
+    overflow-y: scroll;
+    outline: 0 none;
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 #main {
     width: 100%;
     height: 100%;
@@ -68,16 +79,15 @@ a {
     float: left;
     border-right: 1px solid darkgray;
     box-sizing: border-box;
-    overflow-wrap: normal;
-    overflow-x: scroll;
+    overflow: scroll;
+    padding-bottom: 10px;
 }
 
 #right {
     width: 50%;
     height: 100%;
     float: left;
-    overflow-x: scroll;
-    overflow-wrap: normal;
+    overflow: scroll;
 }
 
 #left .list {
@@ -162,10 +172,17 @@ a {
     color: red;
 }
 
-input {
-    padding: 0.4em 0.25em;
+.category {
+    margin: 1em;
+    width: 90%;
+    height: auto;
+}
+
+.category .category-label {
     width: 100%;
-    background: transparent;
-    color: #AFB5BB;
-    font-size: 1.55em;
+    padding-bottom: 0.5em;
+}
+
+.category .category-value {
+    width: 100%;
 }
