@@ -88,6 +88,7 @@ textarea {
     height: 100%;
     float: left;
     overflow: scroll;
+    background-color: #ECECEC;
 }
 
 #left .list {
@@ -171,9 +172,9 @@ textarea {
 }
 
 .category {
-    margin: 1em;
     width: 90%;
     height: 100%;
+    padding: 10px;
 }
 
 .category .category-label {
@@ -182,23 +183,79 @@ textarea {
 }
 
 .div-url .category .category-value {
-    width: 100%;
     height: 20px;
 }
 
 .div-request-header .category .category-value {
-    width: 100%;
     height: 100px;
 }
 
 .div-response-header .category .category-value {
-    width: 100%;
     height: 100px;
 }
 
 .div-response-body .category .category-value {
-    width: 100%;
     height: 200px;
+}
+
+.category-value {
+    width: 100%;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border: solid 1px #CECECE;
+    padding: 10px;
+}
+
+.ObjectBrace {
+    color: #00AA00;
+    font-weight: bold;
+}
+
+.ArrayBrace {
+    color: #0033FF;
+    font-weight: bold;
+}
+
+.PropertyName {
+    color: #CC0000;
+    font-weight: bold;
+}
+
+.String {
+    color: #007777;
+}
+
+.Number {
+    color: #AA00AA;
+}
+
+.Boolean {
+    color: #0000FF;
+}
+
+.Function {
+    color: #AA6633;
+    /*text-decoration: ;*/
+}
+
+.Null {
+    color: #0000FF;
+}
+
+.Comma {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.json-container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+pre.json-container img {
+    cursor: pointer;
+    border: none;
+    margin-bottom: -1px;
 }
 
 
