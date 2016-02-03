@@ -125,23 +125,21 @@ textarea {
 }
 
 #left .item .domain {
-    corlor: #00008;
     margin-right: 5px;
 }
 
 #left .item .domain:hover {
     text-decoration: underline;
-    text-underline-color: #000088;
 }
 
 #left .item .path {
     margin-right: 5px;
-    corlor: #00008;
+    color: #008;
+    cursor: hand;
 }
 
 #left .item .path:hover {
     text-decoration: underline;
-    text-underline-color: #000088;
 }
 
 #left .item .time {
@@ -175,7 +173,7 @@ textarea {
 .category {
     margin: 1em;
     width: 90%;
-    height: auto;
+    height: 100%;
 }
 
 .category .category-label {
@@ -183,6 +181,24 @@ textarea {
     padding-bottom: 0.5em;
 }
 
-.category .category-value {
+.div-url .category .category-value {
     width: 100%;
+    height: 20px;
 }
+
+.div-request-header .category .category-value {
+    width: 100%;
+    height: 100px;
+}
+
+.div-response-header .category .category-value {
+    width: 100%;
+    height: 100px;
+}
+
+.div-response-body .category .category-value {
+    width: 100%;
+    height: 200px;
+}
+
+

@@ -575,8 +575,7 @@ var Category = React.createClass({
                 <div className='category-label'>
                     {this.props.label}
                 </div>
-                <textarea className='category-value'>
-                    {do_js_beautify(this.props.value)}
+                <textarea className='category-value' value={do_js_beautify(this.props.value)}>
                 </textarea>
             </div>
         )

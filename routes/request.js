@@ -4,7 +4,6 @@
 var express = require('express');
 var uuid = require('node-uuid');
 var router = express.Router();
-//url=?&sessionid=?
 var http = require('http');
 var URL = require('url');
 var websocket = require('../websocket')
@@ -40,7 +39,7 @@ var handler = function (req, res, next) {
     };
     callback();
     var req2 = http.request(options, function (res2) {
-        msg.responsHeaders = res2.headers;
+        msg.responseHeaders = res2.headers;
         msg.statusCode = res2.statusCode;
         res.writeHead(res2.statusCode, res2.headers);
         res2.pipe(res);
