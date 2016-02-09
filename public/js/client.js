@@ -11,7 +11,7 @@ connection = {
         this.sessionid = this.genUid();
 
         //连接websocket后端服务器
-        this.socket = io.connect('http://localhost:3000');
+        this.socket = io.connect(window.location.href);
 
         //告诉服务器端有用户登录
         this.socket.emit('bind', {sessionid: this.sessionid});
