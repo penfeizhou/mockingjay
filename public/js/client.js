@@ -18,7 +18,7 @@ connection = {
 
         //监听消息发送
         this.socket.on('message:' + this.sessionid, function (obj) {
-            console.log("method=" + obj.method + ",url=" + obj.url + ",data=" + obj.data);
+           // console.log("method=" + obj.method + ",url=" + obj.url + ",data=" + obj.data);
             update(obj);
         });
     }

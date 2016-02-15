@@ -79,7 +79,7 @@ textarea {
     float: left;
     border-right: 1px solid darkgray;
     box-sizing: border-box;
-    overflow: scroll;
+    overflow-y: scroll;
     padding-bottom: 10px;
 }
 
@@ -88,6 +88,7 @@ textarea {
     height: 100%;
     float: left;
     overflow: scroll;
+    padding-bottom: 10px;
     background-color: #ECECEC;
 }
 
@@ -96,8 +97,7 @@ textarea {
 }
 
 #left .item {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    background: #f5f5f5;
 }
 
 #left .item .method {
@@ -195,7 +195,7 @@ textarea {
 }
 
 .div-response-body .category .category-value {
-    height: 200px;
+    height: 150px;
 }
 
 .category-value {

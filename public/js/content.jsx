@@ -1,5 +1,5 @@
 var data = [];
-
+var left;
 var indexOf = function (obj) {
     if (!obj) {
         return -1;
@@ -11,6 +11,7 @@ var indexOf = function (obj) {
     }
     return -1;
 };
+
 function update(obj) {
     if (obj) {
         var index = indexOf(obj);
@@ -20,10 +21,13 @@ function update(obj) {
             data.splice(index, 1, obj);
         }
     }
-    React.render(
-        <List/>,
-        document.getElementById('left')
-    );
+    if (!left) {
+        left = React.render(
+            <List/>,
+            document.getElementById('left')
+        );
+    }
+    left.setState({items: data}, null);
 }
 
 function selected(obj) {
